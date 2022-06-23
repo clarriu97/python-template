@@ -1,0 +1,26 @@
+-r requirements.txt
+
+bandit
+click
+bump2version
+coverage
+cython
+pip-tools
+pycodestyle
+pylint
+typing-extensions
+pytest
+pytest-cov
+pytest-html
+radon
+safety
+xenon
+
+# Documentation with Mkdocs
+mkdocs-material
+mkdocstrings
+mkdocstrings[python]
+mkdocs-awesome-pages-plugin
+mkdocs-build-plantuml-plugin
+mkdocs_gen_files
+mkdocs-render-swagger-plugin

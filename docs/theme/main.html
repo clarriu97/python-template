@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block scripts %}
+{{ super() }}
+
+{# Add the GitLab's visual review toolbar if we are on a merge request #}
+{% if config.extra.visual_review and config.extra.visual_review.enabled == 'yes' %}
+<script
+    data-project-id='{{ config.extra.visual_review.project_id }}'
+    data-merge-request-id='{{ config.extra.visual_review.merge_request_id }}'
+    data-mr-url='https://gitlab.com'
+    data-project-path='{{ config.extra.visual_review.project_path }}'
+    data-require-auth='true'
+    id='review-app-toolbar-script'
+    src='https://gitlab.com/assets/webpack/visual_review_toolbar.js'>
+</script>
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,62 @@
+[data-md-color-primary="blue"] {
+    --md-primary-fg-color: #1a5eaf;
+    --md-primary-fg-color--light: #3e9dd7;
+    --md-primary-fg-color--dark: #0a286e;
+    --md-primary-bg-color: #fff;
+    --md-primary-bg-color--light: hsla(0,0%,100%,0.7);
+}
+
+h1#home {
+    display: none;
+}
+
+.md-content p {
+    text-align: justify;
+}
+
+.md-header__button.md-logo {
+    padding: 0;
+}
+
+.md-header__button.md-logo img {
+    width: 1.4rem;
+    height: 1.4rem;
+}
+
+.video-wrapper {
+    position: relative;
+    display: block;
+    height: 0;
+    padding: 0;
+    overflow: hidden;
+    padding-bottom: 56.25%;
+}
+
+.video-wrapper > iframe {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+
+:root {
+    --md-admonition-icon--health: url('data:image/svg+xml;charset=utf-8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M14 20.408c-.492.308-.903.546-1.192.709-.153.086-.308.17-.463.252h-.002a.75.75 0 0 1-.686 0 16.709 16.709 0 0 1-.465-.252 31.147 31.147 0 0 1-4.803-3.34C3.8 15.572 1 12.331 1 8.513 1 5.052 3.829 2.5 6.736 2.5 9.03 2.5 10.881 3.726 12 5.605 13.12 3.726 14.97 2.5 17.264 2.5 20.17 2.5 23 5.052 23 8.514c0 3.818-2.801 7.06-5.389 9.262A31.146 31.146 0 0 1 14 20.408z"/></svg>')
+}
+.md-typeset .admonition.health,
+.md-typeset details.health {
+  border-color: rgb(43, 155, 70);
+}
+.md-typeset .health > .admonition-title,
+.md-typeset .health > summary {
+  background-color: rgba(43, 155, 70, 0.1);
+  border-color: rgb(43, 155, 70);
+}
+.md-typeset .health > .admonition-title::before,
+.md-typeset .health > summary::before {
+  background-color: rgb(43, 155, 70);
+  -webkit-mask-image: var(--md-admonition-icon--health);
+          mask-image: var(--md-admonition-icon--health);
+}
