@@ -170,46 +170,46 @@ ci-all: # simulate the complete CI pipeline by running all the ci-* targets
 	$(MAKE) ci-dist-dev && \
 	$(MAKE) ci-dist
 
-ci-prepare: clean ## prepares the environment to run on CI (GitLab)
+ci-prepare: clean ## prepares the environment to run on CI (Github)
 	tox -e {% for python_version in cookiecutter.python_versions %}{{'py' + python_version.replace('.','')}}{% if not loop.last %},{% endif %}{% endfor %},{{ cookiecutter.project_slug }}
 
-ci-lint: ## lint code & tests on CI (GitLab)
+ci-lint: ## lint code & tests on CI (Github)
 	tox -e {{cookiecutter.project_slug}} -- $(MAKE) lint-tests
 	tox -e {{cookiecutter.project_slug}} -- $(MAKE) lint
 
-ci-code-style: ## check code style on CI (GitLab)
+ci-code-style: ## check code style on CI (Github)
 	tox -e {{cookiecutter.project_slug}} -- $(MAKE) code-style
 
-ci-code-metrics: ## display metrics and check cyclomatic complexity (GitLab)
+ci-code-metrics: ## display metrics and check cyclomatic complexity (Github)
 	tox -e {{cookiecutter.project_slug}} -- $(MAKE) code-metrics
 
-ci-security: ## checks the source code for known security vulnerabilities (GitLab)
+ci-security: ## checks the source code for known security vulnerabilities (Github)
 	tox -e {{cookiecutter.project_slug}} -- $(MAKE) security REPORT_FORMAT=html
 
-ci-check-dependencies: ## check dependencies for vulnerabilities using safety (GitLab)
+ci-check-dependencies: ## check dependencies for vulnerabilities using safety (Github)
 	tox -e {{cookiecutter.project_slug}} -- $(MAKE) check-dependencies
 
-ci-test: ## run tests on CI (GitLab)
+ci-test: ## run tests on CI (Github)
 	tox -e $(or $(ENV_NAME), $(shell echo "{% for python_version in cookiecutter.python_versions %}{{'py' + python_version.replace('.','') }}{% if not loop.last %},{% endif %}{% endfor %}")) -- $(MAKE) test REPORT_NAME=$(ENV_NAME)
 
-ci-docs: ## generate docs on CI (GitLab)
+ci-docs: ## generate docs on CI (Github)
 	tox -e {{cookiecutter.project_slug}} -- $(MAKE) docs
 
-ci-version-set: ## set the version to the specified VERSION on CI (GitLab)
+ci-version-set: ## set the version to the specified VERSION on CI (Github)
 	tox -e {{cookiecutter.project_slug}} -- $(MAKE) version-set VERSION="${VERSION}"
 
-ci-dist: ## build the wheel package on CI (GitLab)
+ci-dist: ## build the wheel package on CI (Github)
 	tox -e $(or $(ENV_NAME), $(shell echo "{% for python_version in cookiecutter.python_versions %}{{'py' + python_version.replace('.','') }}{% if not loop.last %},{% endif %}{% endfor %}")) -- $(MAKE) dist
 
-ci-dist-dev: ## build the wheel package (for development, non cythonized) on CI (GitLab)
+ci-dist-dev: ## build the wheel package (for development, non cythonized) on CI (Github)
 	tox -e {{cookiecutter.project_slug}} -- $(MAKE) dist-dev
 
-ci-publish: ## publish built packages to the appropriate repository on CI (GitLab)
-	tox -e {{cookiecutter.project_slug}} -- $(MAKE) publish ## publish the packages generated with dist or dist-dev on CI (GitLab)
+ci-publish: ## publish built packages to the appropriate repository on CI (Github)
+	tox -e {{cookiecutter.project_slug}} -- $(MAKE) publish ## publish the packages generated with dist or dist-dev on CI (Github)
 
-ci-release: ci-dist ci-publish ## build and publish the wheel package on CI (GitLab)
+ci-release: ci-dist ci-publish ## build and publish the wheel package on CI (Github)
 
-ci-release-dev: ## build and publish the wheel package (for development, non cythonized) on CI (GitLab)
+ci-release-dev: ## build and publish the wheel package (for development, non cythonized) on CI (Github)
 	@[ "${VERSION}" ] && ( make ci-version-set )
 	$(MAKE) ci-dist-dev ci-publish
 
