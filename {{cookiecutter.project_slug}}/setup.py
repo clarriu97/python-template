@@ -26,17 +26,13 @@ classifiers = [
     'Intended Audience :: Developers',
     'Natural Language :: English',
     'Topic :: Software Development :: Tools',
-    {%- if cookiecutter.license == 'Copyright' %}
     'License :: Non OSI Approved :: Copyright',
-    {%- else %}
-    'License :: OSI Approved :: {{ cookiecutter.license }}',
-    {%- endif %}
     'Programming Language :: Python :: 3',
-    {%- if '3.6' in cookiecutter.python_versions %}
-    'Programming Language :: Python :: 3.6',
+    {%- if '3.8' in cookiecutter.python_versions %}
+    'Programming Language :: Python :: 3.8',
     {%- endif %}
-    {%- if '3.7' in cookiecutter.python_versions %}
-    'Programming Language :: Python :: 3.7',
+    {%- if '3.9' in cookiecutter.python_versions %}
+    'Programming Language :: Python :: 3.9',
     {%- endif %}
     'Programming Language :: Python :: Implementation :: CPython',
     'Programming Language :: Python :: Implementation :: PyPy'
@@ -149,7 +145,7 @@ setup(
     ext_modules=_try_cythonize(
         _packages_to_cythonize_patterns(packages),
         language_level="3") if should_cythonize else None,
-    python_requires=">=3, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*, !=3.5.*,{% if '3.6' not in cookiecutter.python_versions %}!=3.6.*,{% endif %} <4",
+    python_requires=">=3, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*, !=3.5.*, !=3.6.*, !=3.7.*,{% if '3.8' not in cookiecutter.python_versions %}!=3.8.*,{% endif %} <4",
     cmdclass={
         'build_ext': build_ext
     }

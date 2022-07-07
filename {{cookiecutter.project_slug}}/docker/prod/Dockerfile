@@ -59,7 +59,7 @@ LABEL org.opencontainers.image.created="${BUILD_DATE}" \
     org.opencontainers.image.vendor='{{ cookiecutter.company_name }}' \
     org.opencontainers.image.title='{{ cookiecutter.project_slug }}' \
     org.opencontainers.image.description='{{ cookiecutter.project_short_description }}' \
-    org.opencontainers.image.licenses='{{ cookiecutter.license }}'
+    org.opencontainers.image.licenses="COPYRIGHT"
 
 USER {{ cookiecutter.project_slug }}
 
