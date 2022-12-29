@@ -56,7 +56,6 @@ LABEL org.opencontainers.image.created="${BUILD_DATE}" \
     org.opencontainers.image.source='{{ cookiecutter.project_url }}' \
     org.opencontainers.image.version="${VERSION}" \
     org.opencontainers.image.revision="${REVISION}" \
-    org.opencontainers.image.vendor='{{ cookiecutter.company_name }}' \
     org.opencontainers.image.title='{{ cookiecutter.project_slug }}' \
     org.opencontainers.image.description='{{ cookiecutter.project_short_description }}' \
     org.opencontainers.image.licenses="COPYRIGHT"
