@@ -1,7 +1,6 @@
 -r requirements.txt
 
 bandit
-click
 bump2version
 coverage
 cython
