@@ -1,4 +1,7 @@
 {
+    "_copy_without_render": [
+        "*.html"
+    ],
     "author": "",
     "author_email": "",
     "project_name": "",
