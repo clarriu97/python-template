@@ -42,7 +42,7 @@ theme:
     text: Roboto
     code: Roboto Mono
   logo: assets/images/logo.png
-  favicon: assets/images/favicon.png
+  favicon: assets/images/logo.png
   icon:
     repo: fontawesome/brands/gitlab
   features:
