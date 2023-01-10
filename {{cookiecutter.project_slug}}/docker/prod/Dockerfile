@@ -8,6 +8,17 @@ ARG PIP_EXTRA_INDEX_URL
 
 WORKDIR /home/python-dev
 
+# Install all the supported versions of python using the PPA and other useful tools
+RUN apt-get update && apt-get install -y --no-install-recommends software-properties-common=0.99.9.8 && \
+  add-apt-repository ppa:deadsnakes/ppa -y && apt-get update && apt-get install -y --no-install-recommends \
+  {%- if cookiecutter.project_type == '3.8' %}
+  python3.8-dev=3.8.10-0ubuntu1~20.04.6 \
+  {%- endif %}
+  {%- if cookiecutter.project_type == '3.8' %}
+  python3.9-dev=3.9.5-3ubuntu0~20.04.1 \
+  {%- endif %}
+  curl=7.68.0-1ubuntu2.15
+
 # Install pip for the desired python version
 RUN curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py && \
   python{{ cookiecutter.python_target_version }} get-pip.py && \
@@ -36,9 +47,15 @@ RUN apt-get update && apt-get install -y --no-install-recommends software-proper
   add-apt-repository ppa:deadsnakes/ppa && \
   apt-get update && \
   apt-get install -y --no-install-recommends \
-  python{{ cookiecutter.python_target_version }}{% if python_apt_version != '' %}={{ python_apt_version }}{%endif%} && \
+  {%- if cookiecutter.project_type == '3.8' %}
+  python3.8-dev=3.8.5-1~20.04.2 \
+  python3-distutils=3.8.10-0ubuntu1~20.04 \
+  {%- endif %}
+  {%- if cookiecutter.project_type == '3.9' %}
+  python3.9-dev=3.9.5-3~20.04.1 \
+  {%- endif %}
+  tini=0.18.0-1 && \
   apt-get clean && \
-  update-alternatives --install /usr/bin/python3 python3 /usr/bin/python{{ cookiecutter.python_target_version }} 1 && \
   rm -Rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Get all the Python packages installed on the previous stage
@@ -62,5 +79,5 @@ LABEL org.opencontainers.image.created="${BUILD_DATE}" \
 
 USER {{ cookiecutter.project_slug }}
 
-# Add your code here! This is just an example:
-CMD ["python3", "-c", "import {{ cookiecutter.project_slug }} as m ; print(f\"{m.__title__} (v{m.__version__})\")"]
+ENTRYPOINT ["tini", "--"]
+CMD ["{{ cookiecutter.project_slug }}", "run"]

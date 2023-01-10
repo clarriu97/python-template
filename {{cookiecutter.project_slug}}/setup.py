@@ -148,5 +148,11 @@ setup(
     python_requires=">=3, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*, !=3.5.*, !=3.6.*, !=3.7.*,{% if '3.8' not in cookiecutter.python_versions %}!=3.8.*,{% endif %} <4",
     cmdclass={
         'build_ext': build_ext
-    }
+    },
+    {%- if cookiecutter.project_type == 'application' %}
+    entry_points=f"""
+        [console_scripts]
+        {meta['__title__']}={meta['__title__']}.cli:main
+    """,
+    {%- endif %}
 )
