@@ -50,7 +50,7 @@ lint-tests: ## static test code analysis with pylint
 	pylint --rcfile tests/.pylintrc tests
 
 code-style: ## check code style against PEP8 conventions
-	pycodestyle {{cookiecutter.project_slug}}
+	pycodestyle {{cookiecutter.project_slug}} --max-line-length=150
 
 code-maintainability: ## calculates a maintainability index using radon
 	radon mi -s {{cookiecutter.project_slug}}
